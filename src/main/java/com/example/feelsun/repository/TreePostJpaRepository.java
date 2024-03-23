@@ -21,4 +21,8 @@ public interface TreePostJpaRepository extends JpaRepository<TreePost, Integer> 
     int countByTreeId(Integer treeId);
 
     List<TreePost> findAllByTreeId(Integer deadtree);
+
+    @Query("SELECT COUNT(t) FROM TreePost t WHERE t.tree.id = :treeId AND t.createdAt >= :startOfToday AND t.createdAt < :startOfNextDay")
+    int countByTreeIdAndCreatedAt(Integer treeId, LocalDateTime startOfToday, LocalDateTime startOfNextDay);
+
 }

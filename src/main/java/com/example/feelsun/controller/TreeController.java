@@ -76,7 +76,8 @@ public class TreeController {
             @AuthenticationPrincipal PrincipalUserDetails principalUserDetails,
             @RequestBody @Valid TreeRequest.TreeCreateRequest requestDTO) {
         treeService.updateTreeName(treeId, requestDTO, principalUserDetails);
-
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponseBuilder.successWithNoContent());
+    }
 
     @DeleteMapping("/delete/{treeId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
